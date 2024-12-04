@@ -1,10 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { FaRobot } from "react-icons/fa";
-import { FaExclamationTriangle } from "react-icons/fa";
-
 import { ToastContainer, toast } from "react-toastify"; // Import toast and ToastContainer
-import { ClockLoader } from "react-spinners"; // Import ClockLoader spinner
 
 import { apiUrl } from "../../config/config.js";
 const API_URL = apiUrl;
@@ -42,6 +39,8 @@ const FileUpload = () => {
     toast.info("File cleared.");
   };
 
+  //const API_URL = "http://localhost:3000";
+
   const handleUpload = async () => {
     if (!selectedFile) {
       setUploadStatus("No file selected.");
@@ -69,9 +68,9 @@ const FileUpload = () => {
         }
       );
 
-      setUploadStatus("File uploaded successfully! And your Summary is below");
+      setUploadStatus("File uploaded successfully!And your Summary is below");
 
-      toast.success("File uploaded successfully. Your summary is here!"); // Show success toast
+      toast.success("File uploaded successfully.Your summary is here!"); // Show success toast
       console.log("Response data:", response.data);
 
       setSummary(response.data.AIOutcome.summary); // Set the summary here
@@ -85,12 +84,12 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="flex items-center h-fit justify-center rounded-2xl bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 p-6">
+    <div className="flex h-screen   items-center justify-center bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 p-6">
       <div className="relative w-full max-w-3xl rounded-2xl bg-white/80 dark:bg-gray-800/80 shadow-lg backdrop-blur-md p-8 transition-all">
         {/* Heading */}
         <div className="flex flex-col items-center justify-center gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <FaRobot className="text-6xl text-blue-500 dark:text-blue-300 animate-bounce" />
+            <FaRobot className="text-4xl text-blue-500 dark:text-blue-300 animate-bounce" />
             <h1 className="text-3xl font-extrabold text-gray-800 dark:text-gray-100">
               Upload Your PDF and Ask a Question
             </h1>
@@ -99,6 +98,7 @@ const FileUpload = () => {
             Seamlessly interact with our AI by uploading your report and getting
             insights or answers instantly.
           </p>
+          {/* Status */}
         </div>
 
         {/* Input for Question */}
@@ -165,31 +165,12 @@ const FileUpload = () => {
         {/* Summary Display */}
         {summary && (
           <div className="mt-8 p-6 rounded-lg bg-gray-50 dark:bg-gray-700 shadow-md">
-            {loading ? (
-              <ClockLoader color="#2260ff" loading={true} size={30} />
-            ) : (
-              <>
-                <div className="flex items-center justify-center p-4 bg-yellow-100 dark:bg-yellow-600 rounded-lg shadow-lg border-l-4 border-yellow-500 dark:border-yellow-400 max-w-3xl mx-auto mt-8">
-                  <FaExclamationTriangle className="text-8xl text-yellow-600 dark:text-yellow-300 " />
-                  <p className="ml-4 text-sm text-gray-800 dark:text-gray-200">
-                    <strong className="font-semibold text-gray-900 dark:text-gray-100">
-                      Disclaimer:
-                    </strong>{" "}
-                    The response provided is a simple clarification based on the
-                    information provided. For a comprehensive consultation or
-                    personalized advice, we always recommend consulting with a
-                    qualified healthcare professional.
-                  </p>
-                </div>
-
-                <h2 className="text-xl mt-4 font-semibold text-blue-700 dark:text-blue-400 mb-4">
-                  Summary
-                </h2>
-                <p className="text-lg text-gray-700 dark:text-gray-200">
-                  {summary}
-                </p>
-              </>
-            )}
+            <h2 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-4">
+              Summary
+            </h2>
+            <p className="text-lg text-gray-700 dark:text-gray-200">
+              {summary}
+            </p>
           </div>
         )}
       </div>
