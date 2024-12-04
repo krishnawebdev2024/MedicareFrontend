@@ -83,6 +83,7 @@ export default function App() {
                       <Route path="/services" element={<Services />} />
                       <Route path="/contact" element={<Contact />} />
                       <Route path="/corona" element={<Corona />} />
+                      <Route path="*" element={<Home />} />
 
                       {/* Sign-up and Login routes for patients */}
                       <Route path="/patient-register" element={<Form />} />
